@@ -1,0 +1,11 @@
+#Example configuration options that can be placed in your main SiriProxy config.yml
+
+##########################
+#NOTICE: Modifying these options in this file has no effect. You must put them in SiriProxy's config.yml!
+##########################
+    
+    - name: 'Insteon'
+      path: '/Users/htpc/SiriProxy-Insteon'
+      insteon_hub_ip: '172.16.1.3'
+      insteon_hub_port: '25105'
+      insteon_bulbs: '21F379 21ECB9'
