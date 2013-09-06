@@ -84,7 +84,7 @@ class SiriProxy::Plugin::XBMC < SiriProxy::Plugin
     request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
 
-listen_for /^(?:How do I|How can I|What can I|Do I|How I|How are you|Show the commands for|Show the commands to|What are the commands for) (?:control |do with |controlling |do at )?(?:the)? (?:media|media library|media center)/i do
+listen_for /^(?:How do I|How can I|What can I|Do I|How I|How are you|Show the commands for|Show the commands to|What are the commands for) (?:control |do with |controlling |do at )?(?:the )?(?:media|media library|media center)/i do
     say "Here are the commands for controlling Media Library:\n\nQuery all rooms with XBMC and what is the current status:\n  \"XBMC\"\n\nShow the Weather:\n  \"Show the Weather\"\n\nOpen Netflix/Hulu:\n  \"Open Netflix/Hulu\"\n\nGo to the Home Screen:\n  \"Go to home screen\"\n\nShow recently added movies:\n  \"Show recently added movies\"\n\nShow recently added TV Shows:\n  \"Show recently added TV shows\"\n\nSearch for media titles within the entire media library:\n  \"Search for \[Title\]\"\n\nSearch for media titles within Movie media only:\n  \"Search for movies called \[Title\]\"\n\nSearch for media titles within TV Shows media only:\n  \"Search for TV shows called \[Title\]\"\n\nSearch for TV show titles within TV Shows media only:\n  \"Search for TV episodes called \[Title\]\"\n\nPlay a specific media title from the entire media library:\n  \"Play \[Unique Title\]\"\n\nPlay the last unwatched TV episode from a TV series\n  \"Play \[TV Show Title\]\"\n\nPlay the latest TV episode from a TV series:\n  \"Play the latest \[TV Show Title\]\"\n\nPlay a random TV episode from a TV series:\n  \"Play a random \[TV Show Title\]\"\n\nPlay a movie, only looking in the movie media library:\n  \"Play \[Movie Title\]\"\n\nStop the Media Player:\n  \"Stop\"\n\nPause the Media Player:\n  \"Pause\"\n\nResume the Media Player:\n  \"Resume\"",spoken: "Here are the commands for controlling the Media Library"
     request_completed
 end
@@ -444,7 +444,7 @@ listen_for /^(?:What|Which) (?:services are available|service are available)(?: 
   end
 
   # set default room
-  listen_for /^(?:(?:[Ii]'m in)|(?:[Ii] am in)|(?:[Uu]se)|(?:[Cc]ontrol)) the (.*)/i do |roomname|
+  listen_for /^(?:(?:[Ii]'m in)|(?:[Ii] am in)|(?:[Uu]se)|(?:[Cc]ontrol)) (?:the )?(.*)/i do |roomname|
     deviceMAC = %x[arp -an | grep '(#{self.manager.device_ip})' | cut -d\\  -f4]
     roomname = roomname.downcase.strip
     if (roomname == "house")
