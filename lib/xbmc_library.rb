@@ -1,5 +1,7 @@
 require 'httparty'
 require 'active_support/core_ext'
+require 'json'
+require 'open-uri'
 
 class XBMCLibrary
   # Error class for indicating trouble with authentication against the XBMC Api
@@ -346,7 +348,11 @@ raise XBMCLibrary::UnauthorizedError, "Could not authorize with XBMC. Did you se
   end
 
   def xbmc_search(searchPhrase,subject)
-      puts subject
+      #searchPhrase = searchPhrase.downcase.gsub(/ /, '+')
+      #puts searchPhrase
+      #json = JSON.parse(open("http://imdbapi.org?q=#{searchPhrase}") { |x| x.read }).first
+      #puts json
+      #searchPhrase = searchPhrase.downcase.gsub(/[^0-9A-Za-z]/, '')
       if (subject == "all")
           xbmc('Addons.ExecuteAddon', { :addonid => "script.globalsearch", :params => ["search=#{searchPhrase}&movies=true&tvshows=true&episodes=true&musicvideos=true&artists=true&albums=true&songs=true"] })
       elsif (subject == "movie")
